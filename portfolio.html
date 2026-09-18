@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ephie Oselu — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #10131A;
+    --surface: #171B24;
+    --surface-2: #1D2230;
+    --line: #2A3040;
+    --ink: #E9E8E3;
+    --ink-dim: #9AA1B2;
+    --teal: #52D6C5;
+    --amber: #F0A83A;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --max: 880px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  header.site {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 24px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .mark {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+  }
+  .mark strong { color: var(--ink); }
+
+  nav.site a {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin-left: 22px;
+  }
+  nav.site a:hover { color: var(--ink); text-decoration: none; }
+
+  /* Hero */
+  .hero {
+    padding: 64px 0 88px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; padding-top: 24px; }
+    header.site { flex-direction: column; align-items: flex-start; gap: 14px; }
+    nav.site a { margin-left: 0; margin-right: 18px; }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    line-height: 1.12;
+    margin: 0 0 20px;
+    max-width: 12ch;
+  }
+
+  .hero p.lede {
+    color: var(--ink-dim);
+    font-size: 1.08rem;
+    max-width: 42ch;
+    margin: 0 0 28px;
+  }
+
+  .hero .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 11px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    display: inline-block;
+  }
+  .btn.primary {
+    background: var(--teal);
+    color: #0A1512;
+    border-color: var(--teal);
+  }
+  .btn.primary:hover { background: #6EE2D2; text-decoration: none; }
+  .btn.ghost { color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--ink-dim); text-decoration: none; }
+
+  /* Terminal panel */
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.87rem;
+  }
+  .terminal .bar {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .terminal .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .terminal .body {
+    padding: 18px 16px 22px;
+    min-height: 168px;
+    color: #C7CCDA;
+  }
+  .terminal .prompt { color: var(--teal); }
+  .terminal .line { margin: 0 0 4px; }
+  .terminal .out { color: var(--ink-dim); }
+  .terminal .cursor {
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    background: var(--teal);
+    vertical-align: text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Section headings */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section.hero-section { border-top: none; }
+
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0 0 8px;
+  }
+  .section-sub {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin: 0 0 34px;
+    max-width: 52ch;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .about-grid p { color: var(--ink-dim); margin: 0 0 14px; }
+  .about-grid p:last-child { margin-bottom: 0; }
+
+  .facts { list-style: none; margin: 0; padding: 0; }
+  .facts li {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.93rem;
+  }
+  .facts li:last-child { border-bottom: none; }
+  .facts .k { color: var(--ink-dim); }
+  .facts .v { color: var(--ink); text-align: right; }
+
+  /* Project log */
+  .log { border-left: 1px solid var(--line); }
+
+  .entry {
+    position: relative;
+    padding: 0 0 40px 28px;
+  }
+  .entry:last-child { padding-bottom: 0; }
+
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--teal);
+  }
+
+  .entry .meta {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+
+  .entry h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .entry p.desc {
+    color: var(--ink-dim);
+    margin: 0 0 12px;
+    max-width: 62ch;
+  }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--amber);
+    background: rgba(240, 168, 58, 0.1);
+    border: 1px solid rgba(240, 168, 58, 0.25);
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .entry .links a { font-size: 0.9rem; margin-right: 18px; }
+
+  /* Skills */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .skill-grid div {
+    background: var(--surface);
+    padding: 16px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+
+  /* Contact / footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 40px;
+  }
+  footer h2.section-title { margin-bottom: 10px; }
+  footer .section-sub { margin-bottom: 26px; }
+
+  .contact-links { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-links a { font-size: 1rem; }
+
+  .fineprint {
+    color: var(--ink-dim);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="mark"><strong>Ephie</strong> Oselu</div>
+  <nav class="site">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <section class="hero-section hero">
+    <div>
+      <h1>I build small tools that actually run.</h1>
+      <p class="lede">Software engineering student at Zone01 Kisumu. I work across Go backends and plain JavaScript frontends, mostly on things people would actually use during a shift, not just a demo.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn ghost" href="mailto:atienoephy12@gmail.com">Get in touch</a>
+      </div>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="body" id="termBody"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <p class="section-sub">The short version, and the stack behind it.</p>
+    <div class="about-grid">
+      <div>
+        <p>I'm currently training at Zone01 Kisumu, a peer-to-peer coding school, where most projects are built from a spec, in Go, without a framework to lean on. That's taught me to read requirements closely and ship things that pass the tests, not just look right.</p>
+        <p>Outside school projects I build my own tools end to end — picking the problem, writing the code, and shipping it somewhere real. Currently learning how the pieces fit together: server code, templates, REST endpoints, and plain HTML/CSS/JS on the front end.</p>
+      </div>
+      <ul class="facts">
+        <li><span class="k">Based</span><span class="v">Kisumu, Kenya</span></li>
+        <li><span class="k">School</span><span class="v">Zone01 Kisumu</span></li>
+        <li><span class="k">Focus</span><span class="v">Go · Web fundamentals</span></li>
+        <li><span class="k">Status</span><span class="v">Open to internships</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 class="section-title">Work</h2>
+    <p class="section-sub">A running log of what I've shipped, most recent first.</p>
+
+    <div class="log">
+      <div class="entry">
+        <div class="meta">personal project · deployed</div>
+        <h3>plate-to-data</h3>
+        <p class="desc">A food-waste tracker built for restaurants: a 10-second logging form for staff during rush hours, feeding a dashboard that shows weekly waste in kg, top wasted items, and top reasons — so a kitchen can see where the money is actually going.</p>
+        <div class="tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS Grid</span>
+          <span class="tag">Vanilla JS</span>
+        </div>
+        <div class="links">
+          <a href="https://plate-to-data.vercel.app" target="_blank" rel="noopener">Live site ↗</a>
+          <a href="https://github.com/atienoephy12-maker/plate-to-data" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">Zone01 Kisumu · group project</div>
+        <h3>Groupie Tracker</h3>
+        <p class="desc">A Go web app that pulls band and artist data from a public API — members, tour locations, concert dates, and label relations — and renders it as a browsable site. I owned the frontend: templates, HTML, and CSS for the artist cards and profile pages.</p>
+        <div class="tags">
+          <span class="tag">Go</span>
+          <span class="tag">html/template</span>
+          <span class="tag">REST</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">Zone01 Kisumu · group project</div>
+        <h3>ascii-art-web</h3>
+        <p class="desc">A Go web server that turns text into ASCII art banners — shadow, standard, and thinkertoy styles — through a browser UI instead of the command line. I built the core logic and data layer: the conversion package and banner file parsing. Later extended it with a Docker follow-up, containerizing the server end to end.</p>
+        <div class="tags">
+          <span class="tag">Go</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Standard library only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Skills</h2>
+    <p class="section-sub">What I reach for, roughly in order of comfort.</p>
+    <div class="skill-grid">
+      <div>Go</div>
+      <div>HTML / CSS</div>
+      <div>JavaScript (ES6+)</div>
+      <div>REST APIs</div>
+      <div>html/template</div>
+      <div>Git</div>
+      <div>Docker</div>
+      <div>Responsive layout</div>
+    </div>
+  </section>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Best reached by email — I check it daily.</p>
+    <div class="contact-links">
+      <a href="mailto:atienoephy12@gmail.com">atienoephy12@gmail.com</a>
+      <a href="https://github.com/atienoephy12-maker" target="_blank" rel="noopener">github.com/atienoephy12-maker</a>
+    </div>
+    <div class="fineprint">Built by Ephie Oselu.</div>
+  </div>
+</footer>
+
+<script>
+  // One orchestrated hero moment: a typed terminal sequence, runs once on load.
+  (function () {
+    var body = document.getElementById('termBody');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var lines = [
+      { type: 'cmd', text: 'whoami' },
+      { type: 'out', text: 'ephie oselu — software engineering student' },
+      { type: 'cmd', text: 'cat focus.txt' },
+      { type: 'out', text: 'go · web fundamentals · shipping real things' },
+      { type: 'cmd', text: 'status' },
+      { type: 'out', text: 'open to internships' }
+    ];
+
+    if (reduced) {
+      var html = '';
+      lines.forEach(function (l) {
+        if (l.type === 'cmd') {
+          html += '<p class="line"><span class="prompt">$</span> ' + l.text + '</p>';
+        } else {
+          html += '<p class="line out">' + l.text + '</p>';
+        }
+      });
+      body.innerHTML = html;
+      return;
+    }
+
+    var lineIndex = 0;
+    var charIndex = 0;
+    var currentP = null;
+    var textNode = null;
+
+    function typeNext() {
+      if (lineIndex >= lines.length) {
+        var cur = document.createElement('span');
+        cur.className = 'cursor';
+        body.appendChild(cur);
+        return;
+      }
+
+      var l = lines[lineIndex];
+
+      if (charIndex === 0) {
+        currentP = document.createElement('p');
+        currentP.className = 'line' + (l.type === 'out' ? ' out' : '');
+        if (l.type === 'cmd') {
+          var prompt = document.createElement('span');
+          prompt.className = 'prompt';
+          prompt.textContent = '$ ';
+          currentP.appendChild(prompt);
+        }
+        textNode = document.createTextNode('');
+        currentP.appendChild(textNode);
+        body.appendChild(currentP);
+      }
+
+      if (l.type === 'out') {
+        textNode.textContent = l.text;
+        charIndex = l.text.length;
+      } else if (charIndex < l.text.length) {
+        charIndex++;
+        textNode.textContent = l.text.slice(0, charIndex);
+        setTimeout(typeNext, 28);
+        return;
+      }
+
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(typeNext, l.type === 'cmd' ? 260 : 420);
+    }
+
+    setTimeout(typeNext, 400);
+  })();
+</script>
+
+</body>
+</html>
