@@ -183,10 +183,32 @@
   /* About */
   .about-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 40px;
+    grid-template-columns: 160px 1.3fr 1fr;
+    gap: 36px;
+    align-items: start;
   }
-  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-photo {
+    width: 160px;
+    aspect-ratio: 3 / 4;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+  }
+  @media (max-width: 700px) {
+    .about-photo { width: 130px; }
+  }
 
   .about-grid p { color: var(--ink-dim); margin: 0 0 14px; }
   .about-grid p:last-child { margin-bottom: 0; }
@@ -300,6 +322,8 @@
   <nav class="site">
     <a href="#work">Work</a>
     <a href="#about">About</a>
+    <a href="#articles">Articles</a>
+    <a href="resume.html">Resume</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -324,6 +348,9 @@
     <h2 class="section-title">About</h2>
     <p class="section-sub">The short version, and the stack behind it.</p>
     <div class="about-grid">
+      <div class="about-photo">
+        <img src="ephie-headshot.jpg" alt="Ephie Oselu">
+      </div>
       <div>
         <p>I'm currently training at Zone01 Kisumu, a peer-to-peer coding school, where most projects are built from a spec, in Go, without a framework to lean on. That's taught me to read requirements closely and ship things that pass the tests, not just look right.</p>
         <p>Outside school projects I build my own tools end to end — picking the problem, writing the code, and shipping it somewhere real. Currently learning how the pieces fit together: server code, templates, REST endpoints, and plain HTML/CSS/JS on the front end.</p>
@@ -395,6 +422,35 @@
       <div>Responsive layout</div>
     </div>
   </section>
+
+  <section>
+    <h2 class="section-title">Outside of code</h2>
+    <p class="section-sub">A few things I spend time on when I'm not shipping.</p>
+    <div class="skill-grid hobby-grid">
+      <div>Writing</div>
+      <div>UI / UX design</div>
+    </div>
+  </section>
+
+  <section id="articles">
+    <h2 class="section-title">Articles</h2>
+    <p class="section-sub">Notes on what I'm learning, written up properly.</p>
+    <div class="log">
+      <div class="entry">
+        <div class="meta">dev.to · Sept 2026</div>
+        <h3>The Day Docker Finally Made Sense to Me</h3>
+        <p class="desc">On containerizing ascii-art-web: the multi-stage build that finally made Docker click, and why "it builds" isn't the same as "it works."</p>
+        <div class="tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Go</span>
+          <span class="tag">Beginners</span>
+        </div>
+        <div class="links">
+          <a href="https://dev.to/atieno_ephy_oselu" target="_blank" rel="noopener">Read on dev.to ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <footer id="contact">
@@ -403,7 +459,10 @@
     <p class="section-sub">Best reached by email — I check it daily.</p>
     <div class="contact-links">
       <a href="mailto:atienoephy12@gmail.com">atienoephy12@gmail.com</a>
-      <a href="https://github.com/atienoephy12-maker" target="_blank" rel="noopener">github.com/atienoephy12-maker</a>
+      <a href="https://github.com/atienoephy12-maker" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/atieno-ephy-263752393/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://dev.to/atieno_ephy_oselu" target="_blank" rel="noopener">Dev.to ↗</a>
+      <a href="resume.html">Resume ↗</a>
     </div>
     <div class="fineprint">Built by Ephie Oselu.</div>
   </div>
