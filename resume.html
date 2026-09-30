@@ -23,6 +23,10 @@
     --max: 880px;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -37,6 +41,7 @@
 
   a { color: var(--teal); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
@@ -84,6 +89,8 @@
     border: 1px solid var(--line);
     display: inline-block;
     color: var(--ink);
+    background: transparent;
+    cursor: pointer;
   }
   .btn:hover { border-color: var(--ink-dim); text-decoration: none; }
 
@@ -142,9 +149,23 @@
     font-family: var(--font-mono);
   }
 
+  /* Print: readable ink-on-paper, drop nav + button */
   @media print {
-    header.site nav, .btn { display: none; }
-    body { background: white; color: black; }
+    header.site, .btn { display: none !important; }
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #ffffff;
+      --line: #cccccc;
+      --ink: #111111;
+      --ink-dim: #444444;
+      --teal: #0a6b5e;
+      --amber: #8a5a00;
+    }
+    body { background: #fff; color: #111; }
+    .wrap { padding: 0; max-width: 100%; }
+    section { page-break-inside: avoid; }
+    a { color: #111; }
   }
 </style>
 </head>
@@ -156,6 +177,7 @@
     <a href="index.html">Home</a>
     <a href="index.html#work">Work</a>
     <a href="index.html#articles">Articles</a>
+    <a href="index.html#contact">Contact</a>
   </nav>
 </header>
 
@@ -165,7 +187,7 @@
       <h1>Ephie Oselu</h1>
       <p>Software Engineering Student — Kisumu, Kenya</p>
     </div>
-    <a class="btn" href="javascript:window.print()">Download / Print ↓</a>
+    <button class="btn" type="button" onclick="window.print()">Download / Print ↓</button>
   </div>
 
   <section>
@@ -231,6 +253,14 @@
           <span class="pill">Swahili</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Outside of code</h2>
+    <div class="pill-row">
+      <span class="pill">Writing</span>
+      <span class="pill">UI / UX design</span>
     </div>
   </section>
 
